@@ -206,6 +206,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-rk817-tablet-v10.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-roc-pc.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-ruisen-box.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-taishanpi-dsi1-v10.dtb
+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-taishanpi-v10.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-wxy-oec-turbo-4g.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-x88pro20.dtb
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3567-evb2-lp4x-v10.dtb
