@@ -15,6 +15,7 @@ Such as: PX30-EVB, RK3308-EVB
 import os
 import sys
 import shutil
+import subprocess
 from collections import OrderedDict
 
 DTBS = {}
@@ -33,23 +34,24 @@ def main():
 
     BOARD = sys.argv[1]
     TARGET_DTBS = DTBS[BOARD]
-    target_dtb_list = ''
+    target_dtb_list = []
     default_dtb = True
 
     for dtb, value in TARGET_DTBS.items():
         if default_dtb:
             ori_file = 'arch/arm64/boot/dts/rockchip/' + dtb + '.dtb'
             shutil.copyfile(ori_file, "rk-kernel.dtb")
-            target_dtb_list += 'rk-kernel.dtb '
+            target_dtb_list.append('rk-kernel.dtb')
             default_dtb = False
         new_file = dtb + value + '.dtb'
         ori_file = 'arch/arm64/boot/dts/rockchip/' + dtb + '.dtb'
         shutil.copyfile(ori_file, new_file)
-        target_dtb_list += ' ' + new_file
+        target_dtb_list.append(new_file)
 
-    print(target_dtb_list)
-    os.system('scripts/resource_tool logo.bmp logo_kernel.bmp ' + target_dtb_list)
-    os.system('rm ' + target_dtb_list)
+    print(' '.join(target_dtb_list))
+    subprocess.run(['scripts/resource_tool', 'logo.bmp', 'logo_kernel.bmp'] + target_dtb_list, check=True)
+    for f in target_dtb_list:
+        os.remove(f)
 
 if __name__ == '__main__':
     main()
